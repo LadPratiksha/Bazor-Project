@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "2bDAPoSfeX/myyc6t6lMbnqtQMiUBAxNnIFjVIOFAxo=",
+  "Source": "FileViewer.GrpcService",
+  "BasePath": "_content/FileViewer.GrpcService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

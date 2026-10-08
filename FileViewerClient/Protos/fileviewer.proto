@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+option csharp_namespace = "FileViewer.Grpc";
+
+package fileviewer;
+
+service FileService
+{
+  rpc GetFiles (EmptyRequest)
+      returns (FileListResponse);
+
+  rpc GetFileContent (FileRequest)
+      returns (FileContentResponse);
+}
+
+message EmptyRequest
+{
+}
+
+message FileRequest
+{
+  string fileName = 1;
+}
+
+message FileInfo
+{
+  string fileName = 1;
+}
+
+message FileListResponse
+{
+  repeated FileInfo files = 1;
+}
+
+message FileContentResponse
+{
+  string fileName = 1;
+  string content = 2;
+}

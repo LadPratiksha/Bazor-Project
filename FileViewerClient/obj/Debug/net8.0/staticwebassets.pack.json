@@ -1,0 +1,45 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\ME\\Learning\\ProjectBlazor\\FileViewerClient\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\FileViewerClient.bundle.scp.css",
+      "PackagePath": "staticwebassets\\FileViewerClient.jc62izwcjb.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\ME\\Learning\\ProjectBlazor\\FileViewerClient\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "D:\\ME\\Learning\\ProjectBlazor\\FileViewerClient\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\ME\\Learning\\ProjectBlazor\\FileViewerClient\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\ME\\Learning\\ProjectBlazor\\FileViewerClient\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.FileViewerClient.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.FileViewerClient.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.FileViewerClient.props",
+      "PackagePath": "build\\FileViewerClient.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.FileViewerClient.props",
+      "PackagePath": "buildMultiTargeting\\FileViewerClient.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.FileViewerClient.props",
+      "PackagePath": "buildTransitive\\FileViewerClient.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,0 +1,160 @@
+﻿@page "/fileviewer"
+@rendermode InteractiveServer
+
+@using global::FileViewer.Grpc
+
+@inject global::FileViewer.Grpc.FileService.FileServiceClient FileClient
+
+<div class="card">
+
+    <div class="card-header">
+        <h3>File Viewer</h3>
+    </div>
+
+    <div class="card-body">
+
+        <select @bind="SelectedFile"
+                @bind:after="OnFileChanged">
+
+            <option value="">
+                Select File
+            </option>
+
+            @foreach (var file in Files)
+            {
+                <option value="@file.FileName">
+                    @file.FileName
+                </option>
+            }
+
+        </select>
+
+        <br />
+        <br />
+
+        <button class="btn btn-primary"
+                @onclick="LoadFile"
+                disabled="@string.IsNullOrWhiteSpace(SelectedFile)">
+            📄 Display File
+        </button>
+
+        <button class="btn btn-primary ms-2"
+                @onclick="RefreshFiles">
+            🔄 Refresh Files
+        </button>
+
+        @if (!string.IsNullOrEmpty(Message))
+        {
+            <div class="alert alert-success mt-3">
+                @Message
+            </div>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(SelectedFile))
+        {
+            <p class="mt-3">
+                <strong>Selected File:</strong>
+                @SelectedFile
+            </p>
+        }
+
+        <p>
+            <strong>Total Files:</strong>
+            @Files.Count
+        </p>
+
+        @if (LoadedTime is not null)
+        {
+            <p>
+                <strong>Last Loaded:</strong>
+                @LoadedTime.Value.ToString("dd-MMM-yyyy HH:mm:ss")
+            </p>
+        }
+
+        <hr />
+
+        <h4>File Content</h4>
+
+        <div class="border rounded p-3 bg-light"
+             style="min-height:150px">
+            <pre>@FileContent</pre>
+        </div>
+
+    </div>
+
+</div>
+
+
+@code {
+
+    private List<global::FileViewer.Grpc.FileInfo> Files = new();
+
+    private string SelectedFile = "";
+
+    private string FileContent = "";
+
+    private string Message = "";
+
+    private DateTime? LoadedTime;
+
+    
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result =
+            await FileClient.GetFilesAsync(
+                new global::FileViewer.Grpc.EmptyRequest());
+
+        Files = result.Files.ToList();
+    }
+    private async Task LoadFile()
+    {
+        try
+        {
+            var result =
+                await FileClient.GetFileContentAsync(
+                    new FileRequest
+                        {
+                            FileName = SelectedFile
+                        });
+
+            FileContent = result.Content;
+
+            Message = $"{SelectedFile} loaded successfully.";
+
+            LoadedTime = DateTime.Now;
+        }
+        catch (Exception ex)
+        {
+            Message = $"Error: {ex.Message}";
+
+            FileContent = "";
+        }
+    }
+
+    private async Task RefreshFiles()
+    {
+        var result =
+            await FileClient.GetFilesAsync(
+                new EmptyRequest());
+
+        Files = result.Files.ToList();
+
+        SelectedFile = "";
+        FileContent = "";
+        Message = "Files refreshed successfully.";
+        LoadedTime = null;
+    }
+
+    private void OnFileChanged()
+    {
+        if (string.IsNullOrWhiteSpace(SelectedFile))
+        {
+            FileContent = string.Empty;
+            Message = string.Empty;
+            LoadedTime = null;
+        }
+    }
+
+}
+
